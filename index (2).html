@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VIZNARI - Take control of your life. Manage tasks, track workouts, journal your thoughts, and organize your life like a CEO.">
+    <title>VIZNARI - You Are The CEO Of Your Life</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Sender.net Integration -->
+    <script>
+      (function (s, e, n, d, er) {
+        s['Sender'] = er;
+        s[er] = s[er] || function () {
+          (s[er].q = s[er].q || []).push(arguments)
+        }, s[er].l = 1 * new Date();
+        var a = e.createElement(n),
+            m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+      sender('63380e1a7f5156')
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #3b82f6;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --bg-light: #f8f8f8;
+            --border-color: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-tagline {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            display: block;
+            margin-top: -5px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 0.625rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.625rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-content p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .pricing-card {
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .pricing-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            transform: scaleX(1);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-tier {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+
+        .pricing-period {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li i {
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: var(--secondary-color);
+        }
+
+        .testimonials-section .section-title,
+        .testimonials-section .section-subtitle {
+            color: var(--secondary-color);
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .testimonial-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .testimonial-info h5 {
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .testimonial-info p {
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #2563eb 100%);
+            color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 100px 0;
+            background-color: var(--bg-light);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .form-control {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.875rem 1.25rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Sender.net Form Styling */
+        .sender-form-field {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .sender-form-field iframe {
+            width: 100% !important;
+            max-width: 100% !important;
+            border: none !important;
+            margin: 0 auto;
+        }
+
+        /* Ensure Sender.net form is responsive */
+        @media (max-width: 768px) {
+            .sender-form-field {
+                padding: 0;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                VIZNARI
+                <span class="navbar-tagline">You are the CEO of your life</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#signup">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="hero-title fade-in">Take Control of Your Life</h1>
+                    <p class="hero-subtitle fade-in">VIZNARI is your all-in-one productivity platform designed to help you manage every aspect of your life. From tasks and workouts to journaling and document creation, become the CEO of your own life.</p>
+                    <div class="fade-in">
+                        <a href="#signup" class="btn-primary-custom me-3 mb-3">Start Your Journey</a>
+                        <a href="#features" class="btn-outline-custom mb-3">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center mt-5 mt-lg-0">
+                    <div class="scale-in">
+                        <img src="Work life balance-bro.svg" alt="StorySet Illustration" style="max-width: 600px; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title fade-in">Everything You Need</h2>
+                <p class="section-subtitle fade-in">Powerful features to help you organize, track, and optimize every area of your life</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="check-square" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Task Management</h3>
+                        <p class="feature-description">Organize and prioritize your tasks with ease. Set deadlines, add tags, and never miss an important task again.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="calendar" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Smart Calendar</h3>
+                        <p class="feature-description">Schedule events and manage your time effectively with our intuitive calendar system.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="book-open" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Daily Journal</h3>
+                        <p class="feature-description">Practice gratitude and reflect on your day with daily journal entries and gratitude tracking.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="lightbulb" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Ideas Capture</h3>
+                        <p class="feature-description">Capture brilliant ideas the moment they strike. Never lose a thought again with quick idea logging.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="dumbbell" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Workout Tracking</h3>
+                        <p class="feature-description">Log your exercises, track sets and reps, monitor progress, and achieve your fitness goals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="apple" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Diet Tracking</h3>
+                        <p class="feature-description">Monitor your nutrition with detailed macronutrient tracking and maintain a healthy lifestyle.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="file-text" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Documents</h3>
+                        <p class="feature-description">Create and organize documents with our powerful Notion-like block-based editor.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon">
+                            <i data-lucide="trending-up" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">Analytics</h3>
+                        <p class="feature-description">Track your progress with detailed analytics and insights across all areas of your life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title slide-left">Why Choose VIZNARI?</h2>
+                    <p class="section-subtitle slide-left">Transform the way you manage your life with our comprehensive platform</p>
+                    
+                    <div class="benefit-item slide-left">
+                        <div class="benefit-icon">
+                            <i data-lucide="zap" style="color: white; width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>All-in-One Solution</h4>
+                            <p>Stop juggling multiple apps. VIZNARI brings everything you need into one seamless platform.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item slide-left">
+                        <div class="benefit-icon">
+                            <i data-lucide="shield-check" style="color: white; width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Secure & Private</h4>
+                            <p>Your data is encrypted and secure. We respect your privacy and never share your information.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item slide-left">
+                        <div class="benefit-icon">
+                            <i data-lucide="smartphone" style="color: white; width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Access Anywhere</h4>
+                            <p>Sync across all your devices. Access your data from desktop, tablet, or mobile anytime.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item slide-left">
+                        <div class="benefit-icon">
+                            <i data-lucide="users" style="color: white; width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Built for Success</h4>
+                            <p>Designed with productivity experts to help you achieve your goals and live your best life.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center slide-right">
+                        <img src="logo.jpeg" alt="VIZNARI Benefits" style="max-width: 400px; width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section 
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle fade-in">Choose the plan that works best for you</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5">
+                    <div class="pricing-card scale-in">
+                        <h3 class="pricing-tier">Junior</h3>
+                        <div class="pricing-price">Free</div>
+                        <p class="pricing-period">Forever free</p>
+                        <ul class="pricing-features">
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Basic task management</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Journal entries</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Ideas capture</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Calendar events</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Workout tracking</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Diet tracking</li>
+                        </ul>
+                        <a href="#signup" class="btn-outline-custom w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="pricing-card featured scale-in">
+                        <span class="pricing-badge">Most Popular</span>
+                        <h3 class="pricing-tier">Executive</h3>
+                        <div class="pricing-price">$9.99</div>
+                        <p class="pricing-period">per month</p>
+                        <ul class="pricing-features">
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Everything in Junior</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Unlimited documents</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Advanced analytics</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Priority support</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Custom integrations</li>
+                            <li><i data-lucide="check" style="width: 20px; height: 20px;"></i> Team collaboration</li>
+                        </ul>
+                        <a href="#signup" class="btn-primary-custom w-100">Upgrade Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Testimonials Section 
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title fade-in">What Our Users Say</h2>
+                <p class="section-subtitle fade-in">Join thousands of people transforming their lives</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card slide-up">
+                        <p class="testimonial-text">"VIZNARI has completely transformed how I manage my daily life. I'm more organized, productive, and focused than ever before."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">SM</div>
+                            <div class="testimonial-info">
+                                <h5>Sarah Mitchell</h5>
+                                <p>Entrepreneur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card slide-up">
+                        <p class="testimonial-text">"The all-in-one approach is genius. I no longer need five different apps to manage my tasks, workouts, and goals. Highly recommend!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">JC</div>
+                            <div class="testimonial-info">
+                                <h5>James Chen</h5>
+                                <p>Software Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card slide-up">
+                        <p class="testimonial-text">"As a busy professional, VIZNARI helps me stay on top of everything. The interface is clean, intuitive, and powerful."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">ER</div>
+                            <div class="testimonial-info">
+                                <h5>Emily Rodriguez</h5>
+                                <p>Marketing Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- CTA Section
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2 class="cta-title fade-in">Ready to Take Control?</h2>
+                <p class="cta-subtitle fade-in">Take back control of your work-life balance !</p>
+                <a href="#signup" class="btn-cta fade-in">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Sign Up Form Section -->
+    <section id="signup" class="form-section">
+        <div class="container">
+            <div class="form-container scale-in">
+                <h2 class="form-title">Get Early Access</h2>
+                <p class="form-subtitle">Sign up now and be among the first to experience VIZNARI</p>
+                
+                <!-- Sender.net Embedded Form -->
+                <div style="text-align: center" class="sender-form-field" data-sender-form-id="b827X5"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="footer-brand">VIZNARI</div>
+                    <p class="footer-tagline">You are the CEO of your life</p>
+                    <p style="opacity: 0.7; font-size: 0.9rem;">Take control of every aspect of your life with our comprehensive productivity platform.</p>
+                </div>
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h5 style="font-weight: 700; margin-bottom: 1rem;">Product</h5>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VIZNARI. All rights reserved. Built with passion to help you succeed.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hero animations
+        gsap.to('.hero-section .fade-in', {
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power2.out'
+        });
+
+        gsap.to('.hero-section .scale-in', {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            delay: 0.5,
+            ease: 'back.out(1.7)'
+        });
+
+        // Scroll-triggered animations
+        gsap.utils.toArray('.slide-up').forEach((element, index) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: 'power2.out'
+            });
+        });
+
+        gsap.utils.toArray('.slide-left').forEach((element, index) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                delay: index * 0.15,
+                ease: 'power2.out'
+            });
+        });
+
+        gsap.utils.toArray('.slide-right').forEach((element) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+
+        gsap.utils.toArray('.scale-in').forEach((element) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: 'back.out(1.7)'
+            });
+        });
+
+        gsap.utils.toArray('.fade-in').forEach((element) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out'
+            });
+        });
+
+        // Feature card hover animation
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this.querySelector('.feature-icon'), {
+                    rotation: 360,
+                    duration: 0.6,
+                    ease: 'back.out(1.7)'
+                });
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for CTA section
+        gsap.to('.cta-section::before', {
+            scrollTrigger: {
+                trigger: '.cta-section',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: -100,
+            ease: 'none'
+        });
+
+        // Counter animation for stats (if you want to add stats)
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = Math.floor(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+    </script>
+</body>
+</html>
